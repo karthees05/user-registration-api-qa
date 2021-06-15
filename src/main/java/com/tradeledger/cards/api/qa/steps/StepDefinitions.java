@@ -1,7 +1,7 @@
-package com.tradeledger.cards.api.qa.stepDefinitions;
+package com.tradeledger.cards.api.qa.steps;
 
-import com.tradeledger.cards.api.qa.Contexts.AutomationContext;
-import com.tradeledger.cards.api.qa.Requests.Requests;
+import com.tradeledger.cards.api.qa.contexts.AutomationContext;
+import com.tradeledger.cards.api.qa.requests.Requests;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

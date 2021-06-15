@@ -1,8 +1,8 @@
-package com.tradeledger.cards.api.qa.Requests;
+package com.tradeledger.cards.api.qa.requests;
 
 
-import com.tradeledger.cards.api.qa.Utilities.Constants;
-import com.tradeledger.cards.api.qa.Utilities.CustomException;
+import com.tradeledger.cards.api.qa.utility.Constants;
+import com.tradeledger.cards.api.qa.utility.CustomException;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;

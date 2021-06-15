@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "junit:target/cucumber-result.xml",
                 "usage:usage/cucumber-usage.json"},
         features = "src/test/resources/features",
-        glue = {"com.tradeledger.cards.api.qa.stepDefinitions"},
+        glue = {"com.tradeledger.cards.api.qa.steps"},
         tags = "@api_smoke_all_scenarios")
 
 public class RunCuke {

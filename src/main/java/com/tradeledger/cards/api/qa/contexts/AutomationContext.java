@@ -1,4 +1,4 @@
-package com.tradeledger.cards.api.qa.Contexts;
+package com.tradeledger.cards.api.qa.contexts;
 
 import io.restassured.response.Response;
 

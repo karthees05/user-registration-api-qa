@@ -1,4 +1,4 @@
-package com.tradeledger.cards.api.qa.Utilities;
+package com.tradeledger.cards.api.qa.utility;
 
 public class Constants {
 
