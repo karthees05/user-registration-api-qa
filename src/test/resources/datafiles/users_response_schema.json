@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "eligibleCards": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": [
+    "eligibleCards"
+  ]
+}

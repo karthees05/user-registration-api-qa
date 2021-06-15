@@ -1,0 +1,37 @@
+plugins {
+
+    id 'java'
+}
+
+group 'com.tradeledger'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'io.cucumber:cucumber-java:6.10.4'
+    implementation 'io.cucumber:cucumber-junit:6.10.4'
+    implementation 'io.cucumber:cucumber-picocontainer:6.10.4'
+
+    implementation 'org.hamcrest:hamcrest-all:1.3'
+
+    implementation 'io.rest-assured:rest-assured:4.4.0'
+    implementation 'io.rest-assured:json-schema-validator:4.4.0'
+
+    implementation 'net.minidev:json-smart:2.4.7'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task cucumber(type: JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'org.junit.runner.JUnitCore'
+    args = ['com.tradeledger.cards.api.qa.runner.RunCuke']
+
+}
