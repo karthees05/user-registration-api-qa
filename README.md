@@ -1,5 +1,4 @@
-# user-api-qa
-
+# user-registration-api-qa
 
 ## Run the API Tests
 

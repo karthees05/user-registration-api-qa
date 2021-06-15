@@ -1,4 +1,4 @@
-package com.tradeledger.cards.api.qa;
+package com.tradeledger.cards.api.qa.Requests;
 
 
 import com.tradeledger.cards.api.qa.Utilities.Constants;
