@@ -19,16 +19,23 @@ Steps to follow:
 The Run time parameter needs to be updated based on which environment we are running.
 
 The following parameters are valid if we run through runner class for local profile
+```bash
 -Dservice.uri=http://localhost:8080 -Dservice.profile=local
-
+```
 
 #### Run the API Tests through gradle task or Pipeline or standalone Jenkins job
 
 The Cucumber tests can be executed along with a stage of this API tests in Pipeline or Standalone Jenkins job
 
 From IDE's terminal we can use the below parameters to run API scenarios
-Template: ./gradle clean cucumber -Dservice.uri=uri to enter -Dservice.profile=environment
-Example: ./gradle clean cucumber -Dservice.uri=http://localhost:8080 -Dservice.profile=local
+Syntax: 
+```bash
+./gradle clean cucumber -Dservice.uri=uri to enter -Dservice.profile=environment
+```
+Example: 
+```bash
+./gradle clean cucumber -Dservice.uri=http://localhost:8080 -Dservice.profile=local
+```
 
 Similarly, we can run for other environments by configuring/providing the above 2 parameters in runtime on Pipeline or standalone Jenkins Job.
 
