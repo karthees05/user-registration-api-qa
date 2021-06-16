@@ -38,4 +38,10 @@ public class Requests {
         httpRequest.header("Content-Type", "application/json");
         return httpRequest.body(payload.toJSONString()).request(Method.POST, path);
     }
+    public Response postRequestWithInvalidHeaders(final JSONObject payload, final String path, String headerkey, String headervalue) {
+        httpRequest.header("Accept", "applison");
+        httpRequest.header("Content-Type", "application/json");
+
+        return httpRequest.body(payload.toJSONString()).request(Method.POST, path);
+    }
 }

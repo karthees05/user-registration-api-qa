@@ -2,6 +2,7 @@ package com.tradeledger.cards.api.qa.steps;
 
 import com.tradeledger.cards.api.qa.contexts.AutomationContext;
 import com.tradeledger.cards.api.qa.requests.Requests;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,6 +12,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.minidev.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -34,13 +37,9 @@ public class StepDefinitions {
         Requests.selectEndPoint(userEndPoint);
     }
 
-    @When("^user POST a request with (.*) data (.*) , (.*) , (.*)$")
-    public void postRequest(final Object dataType, final Object name, final Object address, final Object email) {
-        JSONObject inputData = new JSONObject();
-        inputData.put("name", name.toString());
-        inputData.put("address", address.toString());
-        inputData.put("email", email.toString());
-
+    @When("^user POST a request with valid data (.*) , (.*) , (.*)$")
+    public void postRequest(final Object name, final Object address, final Object email) {
+        JSONObject inputData = getJsonObject(name, address, email);
         response = Requests.postRequest(inputData, "/");
     }
 
@@ -64,11 +63,8 @@ public class StepDefinitions {
     }
 
     @When("^user POST a request without a valid field (.*) , (.*) , (.*)$")
-    public void postRequest(final Object name, final Object address, final Object email) {
-        JSONObject inputData = new JSONObject();
-        inputData.put("name", name.toString());
-        inputData.put("address", address.toString());
-        inputData.put("email", email.toString());
+    public void postRequestWithoutValid(final Object name, final Object address, final Object email) {
+        JSONObject inputData = getJsonObject(name, address, email);
 
         for (Map.Entry<String, Object> entry : inputData.entrySet()) {
             if (entry.getValue().equals("")) {
@@ -77,5 +73,32 @@ public class StepDefinitions {
             }
         }
         response = Requests.postRequest(inputData, "/");
+    }
+
+    private JSONObject getJsonObject(Object name, Object address, Object email) {
+        JSONObject inputData = new JSONObject();
+        inputData.put("name", name.toString());
+        inputData.put("address", address.toString());
+        inputData.put("email", email.toString());
+        return inputData;
+    }
+
+    @When("^user POST a request without a key (.*) from the valid keys (.*) , (.*) , (.*)$")
+    public void postRequestInvalid(final String keyToRemove, final Object name, final Object address, final Object email) {
+
+        JSONObject inputData = getJsonObject(name, address, email);
+
+        for (Map.Entry<String, Object> entry : inputData.entrySet()) {
+            if (entry.getKey().equals(keyToRemove)) {
+                inputData.remove(entry.getKey());
+                break;
+            }
+        }
+        response = Requests.postRequest(inputData, "/");
+    }
+    @When("^user POST a request with valid data (.*) , (.*) , (.*) and invalid header (.*) , (.*)$")
+    public void postRequestInvalidHeaders(final Object name, final Object address, final Object email, final String headerkey, final String headervalue) {
+        JSONObject inputData = getJsonObject(name, address, email);
+        response = Requests.postRequestWithInvalidHeaders(inputData, "/", headerkey, headervalue);
     }
 }
