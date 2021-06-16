@@ -9,6 +9,9 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.minidev.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Requests {
     RequestSpecification httpRequest = RestAssured.given();
@@ -36,6 +39,20 @@ public class Requests {
     public Response postRequest(final JSONObject payload, final String path) {
         httpRequest.header("Accept", "application/json");
         httpRequest.header("Content-Type", "application/json");
+        return httpRequest.body(payload.toJSONString()).request(Method.POST, path);
+    }
+
+    public Response postRequestWithInvalidHeaders(final JSONObject payload, final String path, String headerKey, String headerValue) {
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Accept", "application/json");
+        headers.put("Content-Type", "application/json");
+
+        headers.replace(headerKey, headerValue);
+
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            httpRequest.header(entry.getKey(), entry.getValue());
+        }
         return httpRequest.body(payload.toJSONString()).request(Method.POST, path);
     }
 }
