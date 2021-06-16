@@ -46,7 +46,7 @@ Feature: Validate the User API is available to use
       | Boris | test address 1 | iamboris@testmail.com | email       |
 
   @api_smoke_test_invalid_headers
-  Scenario Outline: Validate the POST Request of User registration API with missing mandatory whole field
+  Scenario Outline: Validate the POST Request of User registration API with invalid headers
     Given the API end point eligibility-check is available to use
     And API request contains the correct schema structure
     When user POST a request with data <name> , <address> , <email> and invalid header <header> , <value>
@@ -54,4 +54,5 @@ Feature: Validate the User API is available to use
     Examples:
       | name  | address        | email                 | header       | value    | response_code |
       | Boris | test address 1 | iamboris@testmail.com | Accept       | applison | 406           |
+      | Boris | test address 1 | iamboris@testmail.com | Accept       | $%       | 406           |
       | Boris | test address 1 | iamboris@testmail.com | Content-Type | text/cmd | 415           |
