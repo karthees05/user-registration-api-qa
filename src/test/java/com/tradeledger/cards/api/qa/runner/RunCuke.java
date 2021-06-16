@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
                 "usage:usage/cucumber-usage.json"},
         features = "src/test/resources/features",
         glue = {"com.tradeledger.cards.api.qa.steps"},
-        tags = "@api_smoke_test_invalid_headers")
+        tags = "@api_smoke_all_scenarios")
 
 public class RunCuke {
 }

@@ -96,7 +96,7 @@ public class StepDefinitions {
         }
         response = Requests.postRequest(inputData, "/");
     }
-    @When("^user POST a request with valid data (.*) , (.*) , (.*) and invalid header (.*) , (.*)$")
+    @When("^user POST a request with data (.*) , (.*) , (.*) and invalid header (.*) , (.*)$")
     public void postRequestInvalidHeaders(final Object name, final Object address, final Object email, final String headerkey, final String headervalue) {
         JSONObject inputData = getJsonObject(name, address, email);
         response = Requests.postRequestWithInvalidHeaders(inputData, "/", headerkey, headervalue);
